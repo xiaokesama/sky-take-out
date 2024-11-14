@@ -10,4 +10,18 @@
             </if>
         </where>
     </select>
+
+    <select id="update" parameterType="com.sky.entity.Employee">
+        UPDATE employee
+        <set>
+            <if test="name!= null">name = #{name},</if>
+            <if test="username!= null">username = #{username},</if>
+            <if test="password!= null">password = #{password},</if>
+            <if test="phone!= null">phone = #{phone},</if>
+            <if test="sex!= null">sex #{sex},</if>
+            <if test="idNumber!= null">idNumber = #{idNumber},</if>
+            <if test="status!= null">status = #{status},</if>
+        </set>
+            WHERE id = #{id}
+    </select>
 </mapper>
