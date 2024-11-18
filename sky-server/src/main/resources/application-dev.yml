@@ -6,3 +6,9 @@ sky:
     database: sky_take_out
     username: xiaoke
     password: 1193274986xk
+  minions:
+    endpoint: http://localhost:9000
+    accessKeyId: EWgI4W13HjdH7pyP79uu
+    accessKeySecret: npyljnI4Kmpd3Ulr97uHCcsaLcIMWCvxgJCLYagA
+    bucketName: xiaokebucket0
+
