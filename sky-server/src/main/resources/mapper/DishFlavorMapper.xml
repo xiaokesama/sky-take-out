@@ -6,4 +6,10 @@
     <insert id="insertFlavor">
         INSERT INTO dish_flavor (dish_id,name,value) VALUES (#{id},#{dishFlavor.name},#{dishFlavor.value})
     </insert>
+    <delete id="deleteByDishIds">
+        DELETE FROM dish_flavor WHERE dish_id IN
+        <foreach collection="dishIds" item="dishId" open="(" separator="," close=")">
+            #{dishId}
+        </foreach>
+    </delete>
 </mapper>
