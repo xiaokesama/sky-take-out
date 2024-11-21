@@ -1,5 +1,6 @@
 package com.sky.dto;
 
+import com.sky.vo.DishVO;
 import lombok.Data;
 
 import java.io.Serializable;
