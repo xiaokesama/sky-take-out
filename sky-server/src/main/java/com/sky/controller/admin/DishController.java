@@ -46,4 +46,20 @@ public class DishController {
         dishService.deleteBatch(ids);
         return Result.success();
     }
+
+    @GetMapping("/{id}")
+    @ApiOperation(value = "根据ID查询菜品", notes = "根据ID查询菜品")
+    public Result<DishDTO> getById(@PathVariable Long id){
+        log.info("get dish by id: {}", id);
+        DishDTO dishDTO = dishService.getById(id);
+        return Result.success(dishDTO);
+    }
+
+    @PutMapping
+    @ApiOperation(value = "修改菜品", notes = "修改菜品")
+    public Result update(@RequestBody DishDTO dishDTO){
+        log.info("update dishDTO: {}", dishDTO);
+        dishService.updateWihtFlavor(dishDTO);
+        return Result.success();
+    }
 }
