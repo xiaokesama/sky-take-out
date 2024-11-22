@@ -71,4 +71,9 @@ public class SetmealServiceImpl implements SetmealService {
             setmealDishMapper.insert(setmealDish);
         });
     }
+
+    @Override
+    public void updateStatus(Long status, Long id) {
+        setmealMapper.updateStatus(status, id);
+    }
 }
