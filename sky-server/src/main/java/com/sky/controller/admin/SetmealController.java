@@ -62,5 +62,12 @@ public class SetmealController {
         setmealService.updateStatus(status, id);
         return Result.success();
     }
+    @DeleteMapping
+    @ApiOperation(value = "根据id删除套餐", notes = "根据id删除套餐")
+    public Result deleteByIds(@RequestParam List<Long> ids){
+        log.info("delete setmeal ids: {}", ids);
+        setmealService.deleteByIds(ids);
+        return Result.success();
+    }
 
 }

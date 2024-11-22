@@ -7,6 +7,7 @@ import com.sky.entity.Dish;
 import com.sky.entity.SetmealDish;
 import com.sky.enumeration.OperationType;
 import com.sky.vo.DishVO;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -23,4 +24,7 @@ public interface SetmealDishMapper {
     List<SetmealDish> getBySetmealId(Long setmealId);
 
     void deleteBySetmealId(Long setmealId);
+
+
+    void deleteBySetmealIds(List<Long> setmealIds);
 }

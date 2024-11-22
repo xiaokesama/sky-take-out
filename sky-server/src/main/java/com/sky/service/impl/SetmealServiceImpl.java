@@ -76,4 +76,10 @@ public class SetmealServiceImpl implements SetmealService {
     public void updateStatus(Long status, Long id) {
         setmealMapper.updateStatus(status, id);
     }
+
+    @Override
+    public void deleteByIds(List<Long> ids) {
+        setmealMapper.deleteByIds(ids);
+        setmealDishMapper.deleteBySetmealIds(ids);
+    }
 }

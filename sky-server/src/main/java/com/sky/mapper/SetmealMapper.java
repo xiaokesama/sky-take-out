@@ -5,10 +5,10 @@ import com.sky.annotation.AutoFill;
 import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.entity.Setmeal;
 import com.sky.enumeration.OperationType;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import com.sky.result.Result;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 @Mapper
 public interface SetmealMapper {
@@ -34,4 +34,7 @@ public interface SetmealMapper {
 
     @Update("update setmeal set status = #{status} where id = #{id}")
     void updateStatus(Long status, Long id);
+
+
+    void deleteByIds(List<Long> ids);
 }

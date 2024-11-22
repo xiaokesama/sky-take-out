@@ -12,6 +12,13 @@
         DELETE FROM setmeal_dish WHERE setmeal_id = #{setmealId}
     </delete>
 
+    <delete id="deleteBySetmealIds">
+        DELETE FROM setmeal_dish WHERE setmeal_id IN
+        <foreach collection="setmealIds" item="setmealId" open="(" separator="," close=")">
+            #{setmealId}
+        </foreach>
+    </delete>
+
     <select id="selectByDishIds" resultType="com.sky.entity.SetmealDish">
         SELECT * FROM setmeal_dish WHERE dish_id IN
         <foreach collection="dishIds" item="dishId" open="(" separator="," close=")">

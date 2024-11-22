@@ -5,6 +5,8 @@ import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.result.PageResult;
 import com.sky.vo.SetmealVO;
 
+import java.util.List;
+
 public interface SetmealService {
     public void save(SetmealDTO setmealDTO);
 
@@ -15,4 +17,6 @@ public interface SetmealService {
     void update(SetmealDTO setmealDTO);
 
     void updateStatus(Long status, Long id);
+
+    void deleteByIds(List<Long> ids);
 }
