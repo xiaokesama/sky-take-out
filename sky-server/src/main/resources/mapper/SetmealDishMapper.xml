@@ -8,6 +8,10 @@
             (#{setmealId}, #{dishId}, #{name}, #{price}, #{copies})
     </insert>
 
+    <delete id="deleteBySetmealId">
+        DELETE FROM setmeal_dish WHERE setmeal_id = #{setmealId}
+    </delete>
+
     <select id="selectByDishIds" resultType="com.sky.entity.SetmealDish">
         SELECT * FROM setmeal_dish WHERE dish_id IN
         <foreach collection="dishIds" item="dishId" open="(" separator="," close=")">

@@ -10,6 +10,14 @@
             (#{categoryId},#{name},#{description},#{price},#{status},#{image},#{createTime},#{updateTime},#{createUser},#{updateUser})
     </insert>
 
+    <update id="updateById">
+        UPDATE setmeal SET
+                           category_id = #{categoryId}, name = #{name}, description = #{description},
+                           price = #{price}, status = #{status}, image = #{image},
+                           update_time = #{updateTime}, update_user = #{updateUser}
+        WHERE id = #{id}
+    </update>
+
     <select id="queryQuery" resultType="com.sky.entity.Setmeal">
         select * from setmeal
         <where>

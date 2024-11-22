@@ -32,10 +32,26 @@ public class SetmealController {
     }
 
     @GetMapping("/page")
+    @ApiOperation(value = "分页查询套餐", notes = "分页查询套餐")
     public Result<PageResult> page(@ModelAttribute SetmealPageQueryDTO setmealPageQueryDTO){
         log.info("page setmealPageQueryDTO: {}", setmealPageQueryDTO);
         PageResult pageResult = setmealService.page(setmealPageQueryDTO);
         return Result.success(pageResult);
     }
 
+    @GetMapping("/{id}")
+    @ApiOperation(value = "根据id查询套餐", notes = "根据id查询套餐")
+    public Result<SetmealVO> getById(@PathVariable Long id){
+        log.info("get setmealDTO: {}", id);
+        SetmealVO setmealVO = setmealService.getById(id);
+        return Result.success(setmealVO);
+    }
+
+    @PutMapping
+    @ApiOperation(value = "更新套餐", notes = "更新套餐")
+    public Result update(@RequestBody SetmealDTO setmealDTO){
+        log.info("update setmealDTO: {}", setmealDTO);
+        setmealService.update(setmealDTO);
+        return Result.success();
+    }
 }

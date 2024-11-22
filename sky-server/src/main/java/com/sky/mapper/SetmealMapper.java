@@ -24,4 +24,10 @@ public interface SetmealMapper {
     void insert(Setmeal seatmeal);
 
     Page<Setmeal> queryQuery(SetmealPageQueryDTO setmealPageQueryDTO);
+
+    @Select("select * from setmeal where id = #{id}")
+    Setmeal getById(Long id);
+
+    @AutoFill(OperationType.UPDATE)
+    void updateById(Setmeal setmeal);
 }
