@@ -42,4 +42,7 @@ public interface DishMapper {
 
     @Update("update dish set status = #{status} where id = #{id}")
     void updateStatus(Long id, Integer status);
+
+    @Select("select * from dish where category_id = #{categoryId}")
+    List<Dish> listByCategoryId(Long categoryId);
 }

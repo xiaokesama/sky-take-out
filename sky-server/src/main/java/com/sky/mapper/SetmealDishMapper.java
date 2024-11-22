@@ -16,4 +16,6 @@ import java.util.List;
 public interface SetmealDishMapper {
 
     List<SetmealDish> selectByDishIds(List<Long> dishIds);
+
+    void insert(SetmealDish setmealDish);
 }

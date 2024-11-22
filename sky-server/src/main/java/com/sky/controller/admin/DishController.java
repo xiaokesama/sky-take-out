@@ -3,11 +3,13 @@ package com.sky.controller.admin;
 
 import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
+import com.sky.entity.Dish;
 import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.DishService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -69,5 +71,13 @@ public class DishController {
         log.info("update dish status by id: {}, status: {}", id, status);
         dishService.updateStatus(id, status);
         return Result.success();
+    }
+
+    @GetMapping("/list")
+    @ApiOperation(value = "查询所有菜品", notes = "查询所有菜品")
+    public Result<List<Dish>> list(@RequestParam Long categoryId){
+        log.info("list dish by categoryId: {}", categoryId);
+        List<Dish> dishList = dishService.listByCategoryId(categoryId);
+        return Result.success(dishList);
     }
 }
