@@ -11,4 +11,11 @@ sky:
     accessKeyId: EWgI4W13HjdH7pyP79uu
     accessKeySecret: npyljnI4Kmpd3Ulr97uHCcsaLcIMWCvxgJCLYagA
     bucketName: xiaokebucket0
+  wechat:
+    appid: wx3dbd627da0957bda
+    secret: 23135601e226535fef6bf551aa4c9cf3
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
 
