@@ -8,8 +8,8 @@ sky:
     password: 1193274986xk
   minions:
     endpoint: http://localhost:9000
-    accessKeyId: EWgI4W13HjdH7pyP79uu
-    accessKeySecret: npyljnI4Kmpd3Ulr97uHCcsaLcIMWCvxgJCLYagA
+    accessKeyId: ywa7HOAbZ8pxwP4ye9ED
+    accessKeySecret: Poal9bLum16onWaHlNNrZfRWQKB4BbvJ0VU3bLy3
     bucketName: xiaokebucket0
   wechat:
     appid: wx3dbd627da0957bda
