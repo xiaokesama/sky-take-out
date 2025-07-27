@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class SetmealController {
 
     @PostMapping
     @ApiOperation(value = "保存套餐", notes = "保存套餐")
+    @CacheEvict(value = "setmeal", key = "#setmealDTO.categoryId")
     public Result save(@RequestBody SetmealDTO setmealDTO){
         log.info("save setmealDTO: {}", setmealDTO);
         setmealService.save(setmealDTO);
@@ -41,6 +43,7 @@ public class SetmealController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "根据id查询套餐", notes = "根据id查询套餐")
+    @CacheEvict(value = "setmeal", key = "#id")
     public Result<SetmealVO> getById(@PathVariable Long id){
         log.info("get setmealDTO: {}", id);
         SetmealVO setmealVO = setmealService.getById(id);
@@ -49,6 +52,7 @@ public class SetmealController {
 
     @PutMapping
     @ApiOperation(value = "更新套餐", notes = "更新套餐")
+    @CacheEvict(value = "setmeal", allEntries = true)
     public Result update(@RequestBody SetmealDTO setmealDTO){
         log.info("update setmealDTO: {}", setmealDTO);
         setmealService.update(setmealDTO);
@@ -57,6 +61,7 @@ public class SetmealController {
 
     @PostMapping("/status/{status}")
     @ApiOperation(value = "更改套餐状态", notes = "更改套餐状态")
+    @CacheEvict(value = "setmeal", key = "#id")
     public Result updateStatus(@PathVariable Long status,@RequestParam Long id){
         log.info("update setmeal status: {}, id: {}", status, id);
         setmealService.updateStatus(status, id);
@@ -64,6 +69,7 @@ public class SetmealController {
     }
     @DeleteMapping
     @ApiOperation(value = "根据id删除套餐", notes = "根据id删除套餐")
+    @CacheEvict(value = "setmeal", allEntries = true)
     public Result deleteByIds(@RequestParam List<Long> ids){
         log.info("delete setmeal ids: {}", ids);
         setmealService.deleteByIds(ids);
