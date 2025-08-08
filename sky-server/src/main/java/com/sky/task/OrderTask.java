@@ -17,7 +17,7 @@ public class OrderTask {
     @Autowired
     private OrderMapper orderMapper;
 
-    @Scheduled(cron = "0/5 * * * * ?")
+    @Scheduled(cron = "0 * * * * ?")
     public void processTimeoutOrder() {
         log.info("定时任务处理超时订单：{}", LocalDateTime.now());
         LocalDateTime localDateTime = LocalDateTime.now().plusMinutes(-15);
@@ -37,7 +37,7 @@ public class OrderTask {
         }
     }
 
-    @Scheduled(cron = "0/5 * * * * ?")
+    @Scheduled(cron = "0 0 1 * * ?")
     public void processDeliveryOrder() {
         log.info("定时任务处理待发货订单：{}", LocalDateTime.now());
         LocalDateTime localDateTime = LocalDateTime.now().plusMinutes(-60);
