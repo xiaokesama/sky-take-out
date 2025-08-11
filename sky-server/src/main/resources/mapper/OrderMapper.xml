@@ -16,6 +16,19 @@
              #{tablewareNumber},#{tablewareStatus})
     </insert>
 
+    <select id="pageQuery" resultType="com.sky.entity.Orders">
+        select * from orders
+        <where>
+            <if test="number!= null and number!= ''">
+                and number = #{number}
+            </if>
+            <if test="status != null and status!= ''">
+                and status = #{status}
+            </if>
+        </where>
+        order by id desc
+    </select>
+
     <update id="update" parameterType="com.sky.entity.Orders">
         update orders
         <set>
