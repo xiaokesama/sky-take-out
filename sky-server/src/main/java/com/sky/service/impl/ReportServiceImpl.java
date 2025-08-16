@@ -1,9 +1,11 @@
 package com.sky.service.impl;
 
-import org.apache.commons.lang3.StringUtils;
 import com.sky.mapper.OrderMapper;
+import com.sky.mapper.UserMapper;
 import com.sky.service.ReportService;
+import com.sky.service.UserService;
 import com.sky.vo.TurnoverReportVO;
+import com.sky.vo.UserReportVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,8 @@ public class ReportServiceImpl implements ReportService {
 
     @Autowired
     private OrderMapper orderMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     /**
      * 获取营业额统计信息
@@ -51,6 +55,31 @@ public class ReportServiceImpl implements ReportService {
         return TurnoverReportVO.builder()
                 .dateList(dateList.stream().map(LocalDate::toString).collect(Collectors.joining(",")))
                 .turnoverList(turnoverList.stream().map(Object::toString).collect(Collectors.joining(",")))
+                .build();
+    }
+
+    @Override
+    public UserReportVO getUserStatistics(LocalDate begin, LocalDate end) {
+        List<LocalDate> dateList = new ArrayList<>();
+        List<Integer> totalUserList = new ArrayList<>();
+        List<Integer> newUserList = new ArrayList<>();
+        for (LocalDate localDate = begin; !localDate.isAfter(end); localDate = localDate.plusDays(1)){
+            dateList.add(localDate);
+        }
+        for(LocalDate localDate:dateList){
+            LocalDateTime beginTime = LocalDateTime.of(localDate, LocalTime.MIN);
+            LocalDateTime endTime = LocalDateTime.of(localDate, LocalTime.MAX);
+            Map<String, Object> map = new HashMap<>();
+            map.put("endTime", endTime);
+            totalUserList.add(userMapper.countByMap(map));
+
+            map.put("beginTime", beginTime);
+            newUserList.add(userMapper.countByMap(map));
+        }
+        return UserReportVO.builder()
+                .dateList(dateList.stream().map(LocalDate::toString).collect(Collectors.joining(",")))
+                .totalUserList(totalUserList.stream().map(String::valueOf).collect(Collectors.joining(",")))
+                .newUserList(newUserList.stream().map(String::valueOf).collect(Collectors.joining(",")))
                 .build();
     }
 

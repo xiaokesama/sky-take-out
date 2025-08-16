@@ -2,8 +2,11 @@ package com.sky.controller.admin;
 
 import com.sky.result.Result;
 import com.sky.service.ReportService;
+import com.sky.vo.OrderStatisticsVO;
 import com.sky.vo.TurnoverReportVO;
+import com.sky.vo.UserReportVO;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +30,23 @@ public class ReportController {
 
     @RequestMapping("/turnoverStatistics")
     public Result<TurnoverReportVO> turnoverStatistics(
-            @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam(value = "begin")
-            LocalDate begin,
-            @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam(value = "end")
-            LocalDate end
+            @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam(value = "begin") LocalDate begin,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam(value = "end") LocalDate end
     ) {
         // TODO: 统计营业额报表
         log.info("营业额统计数据：{}-{}", begin, end);
         return Result.success(reportService.getTurnoverStatistics(begin, end));
     }
+
+    @RequestMapping("/userStatistics")
+    @ApiOperation("用户统计")
+    public Result<UserReportVO> userStatistics(
+            @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam(value = "begin") LocalDate begin,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam(value = "end") LocalDate end
+    ){
+        // TODO: 统计用户报表
+        log.info("用户统计数据：{}-{}", begin, end);
+        return Result.success(reportService.getUserStatistics(begin, end));
+    }
+
 }
