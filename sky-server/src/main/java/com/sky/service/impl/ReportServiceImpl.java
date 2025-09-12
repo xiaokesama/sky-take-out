@@ -1,14 +1,13 @@
 package com.sky.service.impl;
 
-import com.aliyun.oss.common.utils.StringUtils;
 import com.sky.mapper.OrderMapper;
 import com.sky.mapper.UserMapper;
 import com.sky.service.ReportService;
-import com.sky.service.UserService;
 import com.sky.vo.OrderReportVO;
 import com.sky.vo.TurnoverReportVO;
 import com.sky.vo.UserReportVO;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -109,9 +108,9 @@ public class ReportServiceImpl implements ReportService {
         Double orderCompletionRate = totalOrderCount == 0 ? 0.0 : validOrderCount.doubleValue() / totalOrderCount;
 
         return OrderReportVO.builder()
-                .dateList(StringUtils.join(String.valueOf(dateList), ","))
-                .orderCountList(StringUtils.join(String.valueOf(orderCountList), ","))
-                .validOrderCountList(StringUtils.join(String.valueOf(validOrderCountList), ","))
+                .dateList(dateList.stream().map(LocalDate::toString).collect(Collectors.joining(",")))
+                .orderCountList(orderCountList.stream().map(String::valueOf).collect(Collectors.joining(",")))
+                .validOrderCountList(validOrderCountList.stream().map(String::valueOf).collect(Collectors.joining(",")))
                 .totalOrderCount(totalOrderCount)
                 .validOrderCount(validOrderCount)
                 .orderCompletionRate(orderCompletionRate)
