@@ -2,6 +2,7 @@ package com.sky.controller.admin;
 
 import com.sky.result.Result;
 import com.sky.service.ReportService;
+import com.sky.vo.OrderReportVO;
 import com.sky.vo.OrderStatisticsVO;
 import com.sky.vo.TurnoverReportVO;
 import com.sky.vo.UserReportVO;
@@ -47,6 +48,17 @@ public class ReportController {
         // TODO: 统计用户报表
         log.info("用户统计数据：{}-{}", begin, end);
         return Result.success(reportService.getUserStatistics(begin, end));
+    }
+
+    @RequestMapping("/ordersStatistics")
+    @ApiOperation("订单统计")
+    public Result<OrderReportVO> ordersStatistics(
+            @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam(value = "begin") LocalDate begin,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam(value = "end") LocalDate end
+    ){
+        // TODO: 统计用户报表
+        log.info("订单统计数据：{}-{}", begin, end);
+        return Result.success(reportService.getOrdersStatistics(begin, end));
     }
 
 }
